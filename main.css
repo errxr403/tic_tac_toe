@@ -7,11 +7,11 @@
 body {
   background: cornsilk;
   font-family: 'Courgette', cursive;
+  color: #fff;
 }
 
 header {
   background: #0074D9;
-  color: #fff;
   font-family: 'Dancing Script', cursive;
   padding: 1rem;
   margin-bottom: 2em;
@@ -22,4 +22,55 @@ header h1 {
   text-align: center;
   text-transform: capitalize;
   font-weight: bold;
+}
+
+.gameboard-container {
+  margin: 0 auto;
+  min-width: 350px;
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.cell {
+  width: 100%;
+  height: 150px;
+  border-radius: 20px;
+  font-size: 5rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell-default {
+  background: #0074D9;
+}
+
+.cell-player1 {
+  background: #FF4136;
+}
+
+.cell-player2 {
+  background: #FF8536;
+}
+
+.cell-winner {
+  background: #2ECC40;
+}
+
+/* Cell Hover Styles */
+
+[data-is-clicked="false"]:hover {
+  background: rgba(0,0,0,0.75);
+}
+
+[data-hover-mark]:not([data-is-clicked="true"]):hover::after {
+  content: attr(data-hover-mark);
+}
+
+[data-is-clicked="true"] {
+  cursor: default;
 }
