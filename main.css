@@ -4,3 +4,22 @@
   box-sizing: border-box;
 }
 
+body {
+  background: cornsilk;
+  font-family: 'Courgette', cursive;
+}
+
+header {
+  background: #0074D9;
+  color: #fff;
+  font-family: 'Dancing Script', cursive;
+  padding: 1rem;
+  margin-bottom: 2em;
+}
+
+header h1 {
+  font-size: 38px;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: bold;
+}
