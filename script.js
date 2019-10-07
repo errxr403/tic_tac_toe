@@ -31,3 +31,32 @@ const Gameboard = ( () => {
 
   return { get, update, reset, isDataFilled };
 })();
+
+const UIHandler = ( () => {
+  // Private Variables & Methods
+  let currentPlayer;
+
+  const DOMstrings = {
+    cell: '.cell',
+  };
+
+  const updateHoverMarkAttr = (event) => {
+    if (event.target.dataset.isClicked == "false") {
+      event.target.dataset.hoverMark = currentPlayer.getMark();
+    };
+  };
+
+  // Public Methods
+  const setupListener = () => {
+    document.querySelectorAll(DOMstrings.cell).forEach(cell => {
+
+      cell.addEventListener('mouseover', updateHoverMarkAttr);
+    });
+  };
+
+  const setCurrentPlayer = (playerObj) => {
+    currentPlayer = playerObj;
+  };
+
+  return { setupListener, setCurrentPlayer }
+})();
