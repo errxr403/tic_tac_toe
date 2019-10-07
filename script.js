@@ -56,6 +56,15 @@ const UIHandler = ( () => {
     event.target.classList.add(cellBGColor);
   };
 
+  const resetCellData = () => {
+    document.querySelectorAll(DOMstrings.cell).forEach(cell => {
+      cell.dataset.hoverMark = "";
+      cell.textContent = "";
+      cell.dataset.isClicked = "false";
+      cell.classList.remove("cell-player1", "cell-player2", "cell-winner");
+    });
+  };
+
   // Public Methods
   const getClickedCellId = () => cellId;
 
@@ -75,5 +84,5 @@ const UIHandler = ( () => {
     currentPlayer = playerObj;
   };
 
-  return { setupListener, setCurrentPlayer, getClickedCellId }
+  return { setupListener,  getClickedCellId, setCurrentPlayer }
 })();
