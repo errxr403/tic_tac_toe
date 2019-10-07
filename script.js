@@ -34,11 +34,13 @@ const Gameboard = ( () => {
 
 const UIHandler = ( () => {
   // Private Variables & Methods
-  let currentPlayer;
+  let currentPlayer, cellId;
 
   const DOMstrings = {
     cell: '.cell',
   };
+
+  const setClickedCellId = (id) => cellId = id;
 
   const updateHoverMarkAttr = (event) => {
     if (event.target.dataset.isClicked == "false") {
@@ -46,11 +48,26 @@ const UIHandler = ( () => {
     };
   };
 
+  const updateCellData = (event) => {
+    let cellBGColor = currentPlayer.getMark() === "X" ? "cell-player1" : "cell-player2";
+
+    event.target.textContent = currentPlayer.getMark();
+    event.target.dataset.isClicked = "true";
+    event.target.classList.add(cellBGColor);
+  };
+
   // Public Methods
+  const getClickedCellId = () => cellId;
+
   const setupListener = () => {
     document.querySelectorAll(DOMstrings.cell).forEach(cell => {
 
       cell.addEventListener('mouseover', updateHoverMarkAttr);
+
+      cell.addEventListener('click', e => {
+        updateCellData(e);
+        setClickedCellId(e.target.id);
+      });
     });
   };
 
@@ -58,5 +75,5 @@ const UIHandler = ( () => {
     currentPlayer = playerObj;
   };
 
-  return { setupListener, setCurrentPlayer }
+  return { setupListener, setCurrentPlayer, getClickedCellId }
 })();
