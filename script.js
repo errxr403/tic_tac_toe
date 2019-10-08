@@ -86,3 +86,25 @@ const UIHandler = ( () => {
 
   return { setupListener,  getClickedCellId, setCurrentPlayer }
 })();
+
+
+const Game = ( () => {
+  // Private Variables & Methods
+  let currentPlayer, player1, player2;
+
+  const switchCurrentPlayer = () => {
+    currentPlayer = currentPlayer === player1 ? player2 : player1;
+    UIHandler.setCurrentPlayer(currentPlayer);
+  };
+
+  const createPlayers = () => {
+    // Get players name from UIHandler
+    player1 = Player("Player 1", "X");
+    player2 = Player("Player 2", "O");
+    
+    currentPlayer = player1;
+  };
+
+
+  return {  }
+})();
