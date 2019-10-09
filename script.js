@@ -91,6 +91,7 @@ const UIHandler = ( () => {
 const Game = ( () => {
   // Private Variables & Methods
   let currentPlayer, player1, player2;
+  let gameboardArr = Gameboard.get();
 
   const switchCurrentPlayer = () => {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
@@ -105,6 +106,12 @@ const Game = ( () => {
     currentPlayer = player1;
   };
 
+  const updateGameboardCell = (index, mark) => {
+    Gameboard.update(index, mark);
+
+    // Get latest gameboard data
+    gameboardArr = Gameboard.get();
+  };
 
   return {  }
 })();
