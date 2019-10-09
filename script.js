@@ -33,19 +33,17 @@ const Gameboard = ( () => {
 })();
 
 const UIHandler = ( () => {
-  // Private Variables & Methods
-  let currentPlayer, cellId;
-
+  // Private Variables
+  let currentPlayer;
   const DOMstrings = {
     cell: '.cell',
   };
 
-  const setClickedCellId = (id) => cellId = id;
+  // Public Methods
+  const getDomStrings = () => DOMstrings;
 
   const updateHoverMarkAttr = (event) => {
-    if (event.target.dataset.isClicked == "false") {
-      event.target.dataset.hoverMark = currentPlayer.getMark();
-    };
+    event.target.dataset.hoverMark = currentPlayer.getMark();
   };
 
   const updateCellData = (event) => {
@@ -54,6 +52,14 @@ const UIHandler = ( () => {
     event.target.textContent = currentPlayer.getMark();
     event.target.dataset.isClicked = "true";
     event.target.classList.add(cellBGColor);
+  };
+
+  const setCurrentPlayer = (currentPlayerObj) => {
+    currentPlayer = currentPlayerObj;
+  };
+
+  const cellIsNotClicked = (event) => {
+    return event.target.dataset.isClicked === "false";
   };
 
   const resetCellData = () => {
@@ -65,26 +71,7 @@ const UIHandler = ( () => {
     });
   };
 
-  // Public Methods
-  const getClickedCellId = () => cellId;
-
-  const setupListener = () => {
-    document.querySelectorAll(DOMstrings.cell).forEach(cell => {
-
-      cell.addEventListener('mouseover', updateHoverMarkAttr);
-
-      cell.addEventListener('click', e => {
-        updateCellData(e);
-        setClickedCellId(e.target.id);
-      });
-    });
-  };
-
-  const setCurrentPlayer = (playerObj) => {
-    currentPlayer = playerObj;
-  };
-
-  return { setupListener,  getClickedCellId, setCurrentPlayer }
+  return { getDomStrings, updateHoverMarkAttr, updateCellData, resetCellData, cellIsNotClicked, setCurrentPlayer }
 })();
 
 
