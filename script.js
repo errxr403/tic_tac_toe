@@ -75,7 +75,7 @@ const UIHandler = ( () => {
 })();
 
 
-const Game = ( () => {
+const Game = ( (UIModule, GameboardModule) => {
   // Private Variables & Methods
   let currentPlayer, player1, player2;
   let gameboardArr = Gameboard.get();
@@ -101,4 +101,4 @@ const Game = ( () => {
   };
 
   return {  }
-})();
+})(UIHandler, Gameboard);
